@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Day_1_Music_Player_Play_Mode</title>
+	<style>
+		#audioPlayer {
+			margin:auto;
+			text-align:center;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<br/>
+<div id="audioPlayer">
+	<button id="play" onclick="playMusic()">Play</button>
+	<button id="shuffele" onclick="shuffeleMusic()">Shuffele</button>
+	<button id="repeat" onclick="repeatMusic()">Repeat</button>
+	<br/><br/><br/>
+	<audio id="myAudio" src="" controls autoplay>
+	</audio>
+	<br/><br/><br/>
+	<table border="1">
+		<tr>
+		<td><a id="MS1" name="music1" onclick="playMusic1()">Music Sample 1</a></td>
+		</tr>
+		<tr>
+		<td><a id="MS2" name="music2" onclick="playMusic2()">Music Sample 2</a></td>
+		</tr>
+		<tr>
+		<td><a id="MS3" name="music3" onclick="playMusic3()">Music Sample 3</a></td>
+		</tr>
+		<tr>
+		<td><a id="MS4" name="music4" onclick="playMusic4()">Music Sample 4</a></td>
+		</tr>
+		<tr>
+		<td><a id="MS5" name="music5" onclick="playMusic5()">Music Sample 5</a></td>
+		</tr>
+	</table>
+	<input id="myInputMusic" placeholder="Add Music Here"/><button id="addButton">Add Music</button>
+</div>
+
+<script>
+	var musicList = [
+        "2CELLOS - Despacito [OFFICIAL VIDEO].mp3",
+        "FROZEN Let It Go Sing-along Official Disney UK Sm3ha.Com-[AudioTrimmer.com].mp3",
+        "[INSTRUMENTAL] Every Single Day(에브리 싱글 데이) - Non-Fiction (Pinocchio OST).mp3",
+		"Counting Stars- OneRepublic (Jun Sung Ahn Violin Cover).mp3",
+		"Dubstep Piano on the lake - Radioactive - With William Joseph - 4K.mp3"];
+	var i=0;
+	function playMusic()
+	{
+		if (i < musicList.length)
+		{
+			var audioM = document.getElementById("myAudio");
+			audioM.src = musicList[i];
+			audioM.play();
+			audioM.onended = function()
+			{
+				//console.log("The Audio Is Stopped");
+				lastAudio = audioM;
+				i++;
+				//console.log(i);
+				playMusic();
+			}
+		}
+	}
+	var lastAudio;
+	function playMusic1()
+	{
+		/*lastAudio = document.getElementById("myAudio");
+		lastAudio.src = musicList[0];
+		lastAudio.play();*/
+	}
+	function playMusic2()
+	{
+		/*lastAudio = document.getElementById("myAudio");
+		lastAudio.src = musicList[1];
+		lastAudio.play();*/
+	}
+	function playMusic3()
+	{
+		/*lastAudio = document.getElementById("myAudio");
+		lastAudio.src = musicList[2];
+		lastAudio.play();*/
+	}
+	function playMusic4()
+	{
+		/*lastAudio = document.getElementById("myAudio");
+		lastAudio.src = musicList[3];
+		lastAudio.play();*/
+	}
+	function playMusic5()
+	{
+		/*lastAudio = document.getElementById("myAudio");
+		lastAudio.src = musicList[4];
+		lastAudio.play();*/
+	}
+	function repeatMusic()
+	{
+		lastAudio.play();
+	}
+	function shuffeleMusic()
+	{
+		var startMusic = (Math.floor(Math.random()*musicList.length));
+		var audioM = document.getElementById("myAudio");
+		audioM.src = musicList[startMusic];
+		audioM.play();
+		audioM.onended = function()
+		{
+			lastAudio = audioM;
+			//console.log(startMusic);
+			shuffeleMusic();
+		}
+	}
+
+	$(document).ready(function()
+    {
+        $("#addButton").click(function()
+        {
+			//get new music entered by user
+            var newMusic = $("#myInputMusic").val();
+			console.log(newMusic);
+			//add new music to my array
+
+			//add new music to my table
+            
+        });
+    });
+</script>
+
+</body>
+</html>
